@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+  <div class="max-w-4xl mx-auto px-4 py-16">
+
+    <header class="text-center mb-16">
+      <h1 class="text-5xl font-bold text-gray-900 mb-4">{{ title }}</h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">{{ description }}</p>
+    </header>
+
+    <div class="flex justify-center gap-4 mb-16">
+      <a
+        href="/login"
+        class="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+      >
+        Get Started
+      </a>
+      <a
+        href="https://github.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="px-6 py-3 bg-gray-200 text-gray-800 font-medium rounded-lg hover:bg-gray-300 transition-colors"
+      >
+        View on GitHub
+      </a>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white p-6 rounded-xl shadow-sm">
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">Type-Safe APIs</h3>
+        <p class="text-gray-600">
+          FastAPI with Pydantic v2 for full request/response validation and auto-generated docs.
+        </p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-sm">
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">Authentication</h3>
+        <p class="text-gray-600">
+          Google OAuth with secure httpOnly session cookies and SQLite session storage.
+        </p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-sm">
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">Local First</h3>
+        <p class="text-gray-600">
+          SQLite database, local file storage. Runs anywhere Python does — no cloud required.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

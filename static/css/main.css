@@ -1,0 +1,11 @@
+/*
+ * Placeholder for compiled Tailwind CSS.
+ *
+ * In development, the Tailwind CDN is loaded via base.html.
+ * For production builds, compile Tailwind here:
+ *
+ *   npx tailwindcss -i ./static/css/input.css -o ./static/css/main.css --minify
+ *
+ * Or use the standalone Tailwind CLI:
+ *   https://tailwindcss.com/blog/standalone-cli
+ */
