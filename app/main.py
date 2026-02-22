@@ -1,9 +1,8 @@
-import sys
 from contextlib import asynccontextmanager
 
+import logfire
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from loguru import logger
 from starlette.middleware.sessions import SessionMiddleware
 
 from app.config import settings
@@ -12,22 +11,22 @@ from app.middleware.logging import LoggingMiddleware
 from app.middleware.security import SecurityHeadersMiddleware
 from app.pages import index, login, logout
 
-# Configure loguru
-logger.remove()
-logger.add(
-    sys.stdout,
-    level=settings.log_level,
-    format="<green>{time:HH:mm:ss}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",
-    colorize=True,
+# Configure logfire
+logfire.configure(
+    send_to_logfire=False,
+    console=logfire.ConsoleOptions(
+        min_log_level=settings.log_level.lower(),
+        colors="auto",
+    ),
 )
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    logger.info("Starting up - creating database tables")
+    logfire.info("Starting up - creating database tables")
     create_tables()
     yield
-    logger.info("Shutting down")
+    logfire.info("Shutting down")
 
 
 app = FastAPI(
@@ -35,6 +34,7 @@ app = FastAPI(
     debug=settings.debug,
     lifespan=lifespan,
 )
+logfire.instrument_fastapi(app)
 
 # Middleware (applied in reverse order - last added = outermost)
 app.add_middleware(SecurityHeadersMiddleware)

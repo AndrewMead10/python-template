@@ -1,6 +1,6 @@
 import time
 
-from loguru import logger
+import logfire
 from collections.abc import Callable
 
 from starlette.middleware.base import BaseHTTPMiddleware
@@ -13,7 +13,11 @@ class LoggingMiddleware(BaseHTTPMiddleware):
         start = time.monotonic()
         response = await call_next(request)
         duration_ms = (time.monotonic() - start) * 1000
-        logger.info(
-            f"{request.method} {request.url.path} -> {response.status_code} ({duration_ms:.1f}ms)"
+        logfire.info(
+            "{method} {path} -> {status_code} ({duration_ms:.1f}ms)",
+            method=request.method,
+            path=request.url.path,
+            status_code=response.status_code,
+            duration_ms=duration_ms,
         )
         return response

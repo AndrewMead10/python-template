@@ -14,7 +14,7 @@ This is a full-stack local Python web application template. Read this document b
 | Auth | Google OAuth via authlib + custom session table |
 | Validation | Pydantic v2 (built into FastAPI) |
 | Storage | Local filesystem |
-| Logging | loguru |
+| Logging | Pydantic Logfire |
 | Package manager | uv |
 
 ## Critical Rules

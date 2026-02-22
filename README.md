@@ -14,7 +14,7 @@ A full-stack local Python web application template with FastAPI, Jinja2, htmx, T
 | **Auth** | Google OAuth (authlib) |
 | **Validation** | Pydantic v2 |
 | **Storage** | Local filesystem |
-| **Logging** | loguru |
+| **Logging** | Pydantic Logfire |
 | **Package manager** | uv |
 
 ## Quick Start
